@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hostel Admin Dashboard</title>
+    <link rel="stylesheet" th:href="@{/dashstyle.css}"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+<header class="navbar">
+    <div class="logo">
+        Admin Dashboard
+    </div>
+    <nav class="nav-links">
+        <a th:href="@{/dashboard}"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+        <a th:href="@{/students}"><i class="fas fa-user-graduate"></i> Students</a>
+        <a th:href="@{/room}"><i class="fas fa-bed"></i> Rooms</a>
+        <a th:href="@{/fees}"><i class="fas fa-coins"></i> Fees</a>
+        <a th:href="@{/complaint}"><i class="fas fa-exclamation-triangle"></i> Complaints</a>
+        <a th:href="@{/event}"><i class="fas fa-calendar-alt"></i> Events</a>
+        <a th:href="@{/reports}"><i class="fas fa-chart-pie"></i> Reports</a>
+        <a th:href="@{/}" class="logout"><i class="fas fa-sign-out-alt"></i> Logout</a> </nav>
+</header>
+
+<main class="dashboard">
+    <h1>Welcome, admin</h1>
+
+    <div class="card-container">
+        <div class="top-row">
+
+            <div class="card">
+                <div class="icon-section">
+                    <i class="fas fa-user-graduate"></i>
+                </div>
+                <div class="data-section">
+                    <div class="count" th:text="${studentCount}">0</div> <div class="label">Students</div>
+                </div>
+                <a th:href="@{/students}" class="manage-btn">MANAGE</a> </div>
+
+            <div class="card">
+                <div class="icon-section">
+                    <i class="fas fa-bed"></i>
+                </div>
+                <div class="data-section">
+                    <div class="count" th:text="${roomCount}">0</div> <div class="label">Rooms</div>
+                </div>
+                <a th:href="@{/room}" class="manage-btn">MANAGE</a>
+            </div>
+
+            <div class="card">
+                <div class="icon-section">
+                    <i class="fas fa-money-bill-wave"></i>
+                </div>
+                <div class="data-section">
+                    <div class="count" th:text="${feeCount}">0</div>
+                    <div class="label">Fees</div>
+                </div>
+                <a th:href="@{/fees}" class="manage-btn">MANAGE</a>
+            </div>
+
+        </div>
+        <div class="bottom-row">
+
+            <div class="card">
+                <div class="icon-section">
+                    <i class="fas fa-exclamation-circle"></i>
+                </div>
+                <div class="data-section">
+                    <div class="count" th:text="${complaintCount}">0</div>
+                    <div class="label">Complaints</div>
+                </div>
+                <a th:href="@{/complaint}" class="manage-btn">MANAGE</a>
+            </div>
+
+            <div class="card">
+                <div class="icon-section">
+                    <i class="fas fa-calendar-alt"></i>
+                </div>
+                <div class="data-section">
+                    <div class="count" th:text="${eventCount}">0</div>
+                    <div class="label">Events</div>
+                </div>
+                <a th:href="@{/event}" class="manage-btn">MANAGE</a>
+            </div>
+
+            <div class="card">
+                <div class="icon-section">
+                    <i class="fas fa-file-alt"></i>
+                </div>
+                <div class="data-section">
+                    <div class="label">Reports</div>
+                </div>
+
+                <a th:href="@{/reports}" class="manage-btn go-btn">GO</a>
+            </div>

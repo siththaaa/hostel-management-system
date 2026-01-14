@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Fee</title>
+
+    <style>
+        .form-container { width: 400px; margin: 50px auto; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); font-family: sans-serif; background: #fff; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; font-weight: bold; margin-bottom: 8px; color: #333; }
+        select, input { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; }
+        .submit-btn { width: 100%; background-color: #76b871; color: white; padding: 12px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; }
+        h2 { color: #5c85d6; text-align: center; margin-bottom: 25px; }
+    </style>
+</head>
+<body>
+<div class="form-container">
+    <h2>Update Fee Details</h2>
+    <form th:action="@{/update-payment/{id}(id=${payment.id})}" th:object="${payment}" method="post">
+
+        <div class="form-group">
+            <label>Room Number</label>
+            <input type="text" th:field="*{roomNumber}" readonly>
+        </div>
+
+        <div class="form-group">
+            <label>Student Name</label>
+            <input type="text" th:field="*{studentName}" readonly>
+        </div>
+
+        <div class="form-group">
+            <label>Amount</label>
+            <input type="number" step="0.01" th:field="*{amount}" required>
+        </div>
+
+        <div class="form-group">
+            <label>Status</label>
+            <select th:field="*{status}">
+                <option value="Paid">Paid</option>
+                <option value="Pending">Pending</option>
+            </select>
+        </div>
+
+        <button type="submit" class="submit-btn">Update Fee</button>
+        <a th:href="@{/fees}" class="cancel-link" style="display:block; text-align:center; margin-top:15px; text-decoration:none; color:#666;">Cancel</a>
+    </form>
+</div>
+</body>
+</html>

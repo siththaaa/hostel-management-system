@@ -1,0 +1,156 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+/* --- Navigation Bar Styling --- */
+.navbar {
+    background-color: #ffffff;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #333;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #333;
+    padding: 10px 15px;
+    margin-left: 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.nav-links a:hover {
+    background-color: #e0e0e0;
+}
+
+.nav-links a.logout {
+    color: #fff;
+    background-color: #dc3545;
+}
+
+.nav-links a.logout:hover {
+    background-color: #c82333;
+}
+
+.nav-links i {
+    margin-right: 5px;
+}
+
+/* --- Dashboard Content Styling --- */
+.dashboard {
+    padding: 30px;
+}
+
+.dashboard h1 {
+    color: #333;
+    margin-bottom: 30px;
+    font-weight: normal;
+}
+
+/* Container for all cards - uses flexbox to center the rows */
+.card-container {
+    display: flex;
+    flex-direction: column; /* Stack the rows vertically */
+    align-items: center; /* Center the rows horizontally */
+    gap: 20px; /* Space between the top and bottom rows */
+}
+
+/* Styling for the rows of cards to create the 3-column layout */
+.top-row, .bottom-row {
+    display: grid;
+    /* Define exactly 3 columns with equal width */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    width: 100%; /* Take full width of the parent (card-container) */
+    /* Set a maximum width for the grid to keep the cards manageable and centered */
+    max-width: 1000px; /* You can adjust this value */
+}
+
+.card {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    text-align: center;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 200px;
+    min-width: 0; /* Ensures proper sizing within the grid */
+}
+
+.icon-section {
+    color: #007bff; /* Blue icon color */
+    font-size: 4em;
+    margin-bottom: 10px;
+    line-height: 1;
+}
+
+.data-section {
+    flex-grow: 1;
+    display: flex; /* Use flex to align content within data section */
+    flex-direction: column;
+    justify-content: center;
+}
+
+.count {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #333;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.label {
+    font-size: 1.1em;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.report-text {
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.manage-btn {
+    /* Updated button width for better fit with new grid layout */
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 0;
+    width: calc(100% + 40px); /* Adjusts width to span card boundaries */
+    margin: 0 -20px -20px -20px; /* Removes internal padding space */
+    text-transform: uppercase;
+    font-weight: bold;
+    border-radius: 0 0 8px 8px; /* Round only the bottom corners */
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-decoration: none;
+
+}
+
+.manage-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Styling for the Go button in Reports */
+.go-btn {
+    background-color: #28a745; /* Green color for Go */
+}
+
+.go-btn:hover {
+    background-color: #1e7e34;
+}

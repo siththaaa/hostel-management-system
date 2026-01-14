@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Complaint</title>
+    <link rel="stylesheet" th:href="@{/css/dashstyle.css}">
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+        .update-container { background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); width: 100%; max-width: 450px; text-align: center; }
+        h2 { color: #7a92cf; margin-bottom: 30px; font-weight: 600; }
+        .form-group { text-align: left; margin-bottom: 20px; }
+        label { display: block; font-weight: bold; margin-bottom: 8px; color: #333; }
+        input, select, textarea { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 10px; font-size: 16px; box-sizing: border-box; }
+        textarea { height: 100px; resize: none; }
+        .btn-update { width: 100%; padding: 14px; background-color: #8dbb8d; border: none; border-radius: 10px; color: white; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 10px; transition: background 0.3s; }
+        .btn-update:hover { background-color: #7aaa7a; }
+        .cancel-link { display: block; margin-top: 20px; color: #666; text-decoration: none; font-size: 14px; }
+    </style>
+</head>
+<body>
+
+<div class="update-container">
+    <h2>Update Complaint Details</h2>
+
+    <form th:action="@{/update-complaint/{id}(id=${complaint.id})}" th:object="${complaint}" method="post">
+        <div class="form-group">
+            <label>Room Number</label>
+            <input type="text" th:field="*{roomNumber}" placeholder="e.g., A14" required>
+        </div>
+
+        <div class="form-group">
+            <label>Complaint</label>
+            <textarea th:field="*{description}" placeholder="Details of the complaint..." required></textarea>
+        </div>
+
+        <div class="form-group">
+            <label>Status</label>
+            <select th:field="*{status}">
+                <option value="Pending">Pending</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Resolved">Resolved</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn-update">Update Complaint</button>
+        <a th:href="@{/complaint}" class="cancel-link">Cancel</a>
+    </form>
+</div>
+
+</body>
+</html>

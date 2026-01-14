@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Event</title>
+    <link rel="stylesheet" th:href="@{/pagestyle.css}">
+
+    <style>
+
+        .form-card { width: 400px; margin: 50px auto; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); font-family: sans-serif; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; font-weight: bold; margin-bottom: 8px; color: #333; }
+        select, input { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; }
+        input[readonly] { background-color: #f9f9f9; color: #666; cursor: not-allowed; }
+        .btn-save { width: 100%; background-color: #76b871; color: white; padding: 12px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; }
+        h2 { color: #5c85d6; text-align: center; margin-bottom: 25px; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="form-card">
+        <h2 class="form-title">Update Event Details</h2>
+
+        <form th:action="@{/saveEvent}" th:object="${event}" method="post">
+
+            <input type="hidden" th:field="*{id}">
+
+            <div class="form-group">
+                <label>Event Name</label>
+                <input type="text" th:field="*{eventName}" required>
+            </div>
+
+            <div class="form-group">
+                <label>Event Date</label>
+                <input type="date" th:field="*{eventDate}" required>
+            </div>
+
+            <div class="form-group">
+                <label>Location</label>
+                <select th:field="*{location}">
+                    <option value="Common Room">Common Room</option>
+                    <option value="Study Hall">Study Hall</option>
+                    <option value="Dining Area">Dining Area</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Status</label>
+                <select th:field="*{status}">
+                    <option value="Scheduled">Scheduled</option>
+                    <option value="Pending">Pending</option>
+                    <option value="Completed">Completed</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn-save">Update Event</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

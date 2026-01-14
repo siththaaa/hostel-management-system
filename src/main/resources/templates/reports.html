@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Hostel Reports</title>
+    <link rel="stylesheet" th:href="@{/student.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/room.css}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .section-header {
+            padding: 20px 20px 10px;
+            margin: 20px 20px 0;
+            border-bottom: 2px solid #f4f4f4;
+            color: #333;
+            font-family: sans-serif;
+        }
+        .report-grid {
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+        }
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        canvas {
+            max-height: 250px;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+<header class="navbar">
+    <div class="logo">Admin Dashboard</div>
+    <nav class="nav-links">
+        <a th:href="@{/dashboard}"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+        <a th:href="@{/students}"><i class="fas fa-user-graduate"></i> Students</a>
+        <a th:href="@{/room}"><i class="fas fa-bed"></i> Rooms</a>
+        <a th:href="@{/fees}"><i class="fas fa-coins"></i> Fees</a>
+        <a th:href="@{/complaint}"><i class="fas fa-exclamation-triangle"></i> Complaints</a>
+        <a th:href="@{/event}"><i class="fas fa-calendar-alt"></i> Events</a>
+        <a th:href="@{/reports}"><i class="fas fa-chart-pie"></i> Reports</a>
+        <a th:href="@{/}" class="logout"><i class="fas fa-sign-out-alt"></i> Logout</a> </nav>
+    </nav>
+</header>
+
+<h2 class="section-header"><i class="fas fa-hotel"></i> Facility Overview</h2>
+<div class="report-grid">
+    <div class="card">
+        <h3>Student Status</h3>
+        <canvas id="studentChart"></canvas>
+    </div>
+    <div class="card">
+        <h3>Room Availability</h3>
+        <canvas id="roomChart"></canvas>
+    </div>
+    <div class="card">
+        <h3>Fee Payment Status</h3>
+        <canvas id="feeDoughnutChart"></canvas>
+    </div>
+</div>
+
+<h2 class="section-header"><i class="fas fa-clipboard-list"></i> Complaints & Events</h2>
+<div class="report-grid">
+    <div class="card">
+        <h3>Complaints Distribution</h3>
+        <canvas id="complaintPieChart"></canvas>
+    </div>
+    <div class="card">
+        <h3>Complaint Resolution Progress</h3>
+        <canvas id="complaintBarChart"></canvas>
+    </div>
+    <div class="card">
+        <h3>Event Status</h3>
+        <canvas id="eventChart"></canvas>
+    </div>
+</div>
+
+<script th:inline="javascript">
+    // Data mapping from Controller
+    const active = [[${activeCount}]];
+    const inactive = [[${inactiveCount}]];
+    const occupied = [[${occupiedRooms}]];
+    const available = [[${availableRooms}]];
+    const paid = [[${paidFees}]];
+    const pending = [[${pendingFees}]];
+    const cPending = [[${pendingComplaints}]];
+    const cProgress = [[${inProgressComplaints}]];
+    const cResolved = [[${resolvedComplaints}]];
+    const scheduled = [[${scheduledEvents}]];
+    const ePending = [[${pendingEvents}]];
+
+    // Initialize all 6 charts (Student, Room, Fee, Complaint Pie, Complaint Bar, Event)
+    const charts = [
+        { id: 'studentChart', type: 'pie', labels: ['Active', 'Inactive'], data: [active, inactive], colors: ['#28a745', '#dc3545'] },
+        { id: 'roomChart', type: 'bar', labels: ['Occupied', 'Available'], data: [occupied, available], colors: ['#ffc107', '#17a2b8'], isBar: true },
+        { id: 'feeDoughnutChart', type: 'doughnut', labels: ['Paid', 'Pending'], data: [paid, pending], colors: ['#2ecc71', '#f1c40f'] },
+        { id: 'complaintPieChart', type: 'pie', labels: ['Pending', 'In Progress', 'Resolved'], data: [cPending, cProgress, cResolved], colors: ['#e74c3c', '#f39c12', '#27ae60'] },
+        { id: 'complaintBarChart', type: 'bar', labels: ['Pending', 'In Progress', 'Resolved'], data: [cPending, cProgress, cResolved], colors: ['#e74c3c', '#f39c12', '#27ae60'], isBar: true },
+        { id: 'eventChart', type: 'pie', labels: ['Scheduled', 'Pending'], data: [scheduled, ePending], colors: ['#3498db', '#f39c12'] }
+    ];
+
+    charts.forEach(config => {
+        new Chart(document.getElementById(config.id), {
+            type: config.type,
+            data: {
+                labels: config.labels,
+                datasets: [{ data: config.data, backgroundColor: config.colors }]
+            },
+            options: config.isBar ? { scales: { y: { beginAtZero: true } } } : {}
+        });
+    });
+</script>
+</body>
+</html>

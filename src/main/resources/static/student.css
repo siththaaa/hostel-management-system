@@ -1,0 +1,167 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+/* --- Navigation Bar Styling --- */
+.navbar {
+    background-color: #ffffff;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #333;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #333;
+    padding: 10px 15px;
+    margin-left: 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.nav-links a:hover {
+    background-color: #e0e0e0;
+}
+
+.nav-links a.logout {
+    color: #fff;
+    background-color: #dc3545;
+}
+
+.nav-links a.logout:hover {
+    background-color: #c82333;
+}
+
+.nav-links i {
+    margin-right: 5px;
+}
+
+/* General page container styling */
+.student-management-page {
+    padding: 30px;
+    background-color: #f4f4f4;
+    min-height: 100vh;
+}
+
+/* --- Page Header and Button --- */
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.page-title {
+    background-color: #007bff;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 4px;
+    font-size: 1.5em;
+    font-weight: 500;
+}
+
+.add-student-link {
+    text-decoration: none;
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: inline-block;
+    border: none;
+    transition: background-color 0.3s;
+}
+
+.add-student-link:hover {
+    background-color: #1e7e34;
+}
+
+/* --- Table Styling with Vertical Lines --- */
+.table-container {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow-x: auto;
+    padding: 1px; /* Prevents border overlap */
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    /* Adds outer border to the table */
+    border: 1px solid #ddd;
+}
+
+.data-table th, .data-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #ddd;
+    /* Adds the vertical lines */
+    border-right: 1px solid #ddd;
+}
+
+/* Removes vertical line from the last column for a cleaner look */
+.data-table th:last-child,
+.data-table td:last-child {
+    border-right: none;
+}
+
+.data-table thead tr {
+    background-color: #f0f8ff;
+    color: #333;
+    font-weight: bold;
+}
+
+.data-table th {
+    background-color: #e9f2ff;
+    color: #007bff;
+    font-size: 0.9em;
+    text-transform: uppercase;
+}
+
+/* --- Action Buttons --- */
+.action-edit, .action-delete {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1em;
+    margin-right: 10px;
+    text-decoration: none;
+}
+
+.action-edit { color: #007bff; }
+.action-delete { color: #dc3545; }
+
+/* --- Success Alert --- */
+.alert-success-box {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 15px 25px;
+    border: 1px solid #c3e6cb;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    animation: slideIn 0.5s ease-out;
+}
+
+.alert-success-box i {
+    margin-right: 15px;
+    font-size: 1.3em;
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}

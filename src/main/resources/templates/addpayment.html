@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Payment</title>
+</head>
+<body>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Payment</title>
+    <link rel="stylesheet" href="/pagestyle.css">
+    <style>
+        /* Styling to match your image */
+        .card { width: 400px; margin: 50px auto; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); font-family: sans-serif; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; font-weight: bold; margin-bottom: 8px; color: #333; }
+        select, input { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; }
+        input[readonly] { background-color: #f9f9f9; color: #666; cursor: not-allowed; }
+        .btn-save { width: 100%; background-color: #76b871; color: white; padding: 12px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; }
+        h2 { color: #5c85d6; text-align: center; margin-bottom: 25px; }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2>Add New Payment</h2>
+    <form th:action="@{/save-payment}" method="post">
+
+        <div class="form-group">
+            <label>Room Number</label>
+            <select id="roomSelect" name="roomNumber" onchange="fetchStudentName()" required>
+                <option value="">-- Select Room --</option>
+                <option th:each="room : ${rooms}"
+                        th:value="${room.roomNumber}"
+                        th:text="${room.roomNumber}"></option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Student Name</label>
+            <input type="text" id="studentName" name="studentName" placeholder="Auto-filled" readonly>
+        </div>
+
+        <div class="form-group">
+            <label>Amount</label>
+            <input type="number" step="0.01" name="amount" placeholder="Enter amount (e.g. 500.00)" required>
+        </div>
+
+        <div class="form-group">
+            <label>Status</label>
+            <select name="status">
+                <option value="Pending">Pending</option>
+                <option value="Paid">Paid</option>
+
+            </select>
+        </div>
+
+        <button type="submit" class="btn-save">Save Payment</button>
+    </form>
+</div>
+
+<script>
+    function fetchStudentName() {
+        const roomNum = document.getElementById("roomSelect").value;
+        const studentInput = document.getElementById("studentName");
+
+        if (roomNum) {
+            // Fetch the name from the server without reloading the page
+            fetch('/get-student-by-room/' + roomNum)
+                .then(response => response.text())
+                .then(data => {
+                    studentInput.value = data || "No student assigned";
+                });
+        } else {
+            studentInput.value = "";
+        }
+    }
+</script>
+
+</body>
+</html>
+
+</body>
+</html>

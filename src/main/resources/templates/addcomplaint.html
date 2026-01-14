@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Complaint</title>
+    <link rel="stylesheet" th:href="@{/css/addstudent.css}">
+    <style>
+
+        body { font-family: sans-serif; background-color: #f8f9fa; display: flex; justify-content: center; padding-top: 50px; }
+        .form-container { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); width: 400px; }
+        h2 { color: #6c88c8; text-align: center; margin-bottom: 25px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; font-weight: bold; margin-bottom: 5px; color: #333; }
+        input, select, textarea { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; }
+        textarea { height: 100px; resize: none; }
+        .btn-save { width: 100%; padding: 12px; background-color: #8dbb8d; border: none; border-radius: 8px; color: white; font-weight: bold; cursor: pointer; margin-top: 10px; }
+        .btn-save:hover { background-color: #7aaa7a; }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Add New Complaint</h2>
+
+    <form th:action="@{/save-complaint}" th:object="${complaint}" method="post">
+
+        <div class="form-group">
+            <label>Room Number</label>
+            <select th:field="*{roomNumber}" class="form-control" required>
+                <option value="">-- Select Room --</option>
+                <option th:each="room : ${rooms}"
+                        th:value="${room.roomNumber}"
+                        th:text="${room.roomNumber}">
+                </option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Complaint Details</label>
+            <textarea th:field="*{description}" required></textarea>
+        </div>
+
+        <div class="form-group">
+            <label>Status</label>
+            <select th:field="*{status}">
+                <option value="Pending">Pending</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Resolved">Resolved</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn-save">Save Complaint</button>
+    </form>
+</div>
+
+</body>
+</html>

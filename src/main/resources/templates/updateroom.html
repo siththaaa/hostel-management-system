@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Room</title>
+    <link rel="stylesheet" th:href="@{/pagestyle.css}">
+    <style>
+        .form-container { max-width: 450px; margin: 50px auto; background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; }
+        .form-group input, .form-group select { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; }
+        .update-btn { background-color: #4481eb; color: white; border: none; padding: 12px; width: 100%; border-radius: 6px; cursor: pointer; font-weight: bold; }
+    </style>
+</head>
+<body>
+<div class="form-container">
+    <h2 style="text-align: center; color: #4481eb; margin-bottom: 25px;">Update Room Details</h2>
+
+    <form th:action="@{/saveRoom}" th:object="${room}" method="post">
+        <input type="hidden" th:field="*{id}">
+
+        <div class="form-group">
+            <label>Room Number</label>
+            <input type="text" th:field="*{roomNumber}" required>
+        </div>
+
+        <div class="form-group">
+            <label>Room Type</label>
+            <select th:field="*{type}">
+                <option value="Single">Single</option>
+
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Assigned Student</label>
+            <select th:field="*{student}">
+                <option value="">-- No Student Assigned --</option>
+                <option th:each="std : ${students}"
+                        th:value="${std.id}"
+                        th:text="${std.name}"></option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Status</label>
+            <select th:field="*{status}">
+                <option value="Occupied">Occupied</option>
+                <option value="Available">Available</option>
+
+            </select>
+        </div>
+
+        <button type="submit" class="update-btn">Update Room</button>
+        <a th:href="@{/room}" style="display:block; text-align:center; margin-top:15px; text-decoration:none; color:#666;">Cancel</a>
+    </form>
+</div>
+</body>
+</html>

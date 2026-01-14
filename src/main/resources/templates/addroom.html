@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add New Room</title>
+    <link rel="stylesheet" th:href="@{/pagestyle.css}">
+    <style>
+        .form-container { width: 400px; margin: 50px auto; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); font-family: sans-serif; background: #fff; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; font-weight: bold; margin-bottom: 8px; color: #333; }
+        select, input { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; }
+        .submit-btn { width: 100%; background-color: #76b871; color: white; padding: 12px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; }
+        h2 { color: #5c85d6; text-align: center; margin-bottom: 25px; }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Add New Room</h2>
+    <form th:action="@{/saveRoom}" th:object="${room}" method="post">
+
+        <div class="form-group">
+            <label>Room Number</label>
+            <input type="text" th:field="*{roomNumber}" placeholder="e.g., A101" required>
+        </div>
+
+        <div class="form-group">
+            <label>Room Type</label>
+            <select th:field="*{type}">
+                <option value="Single">Single</option>
+
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Assign Student (Optional)</label>
+            <select th:field="*{student}">
+                <option value="">-- No Student Assigned --</option>
+                <option th:each="s : ${students}"
+                        th:value="${s.id}"
+                        th:text="${s.name}"></option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Status</label>
+            <select th:field="*{status}">
+                <option value="Occupied">Occupied</option>
+                <option value="Available">Available</option>
+
+            </select>
+        </div>
+
+        <button type="submit" class="submit-btn">Save Room</button>
+    </

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Student</title>
+</head>
+<body>
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Student</title>
+    <link rel="stylesheet" th:href="@{/addstudent.css}">
+</head>
+<body>
+<div class="form-container">
+    <h2>Update Student Details</h2>
+
+    <form th:action="@{/update-student/{id}(id=${student.id})}" th:object="${student}" method="post">
+
+        <input type="hidden" th:field="*{id}" />
+
+        <div class="form-grid">
+            <div class="form-group">
+                <label for="idNumber">ID Number</label>
+                <input type="text" id="idNumber" th:field="*{idNumber}" placeholder="e.g. STU123" required>
+            </div>
+
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" th:field="*{name}" placeholder="Enter student name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" th:field="*{email}" placeholder="email@example.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone</label>
+                <input type="tel" id="phone" th:field="*{phone}" placeholder="Phone number">
+            </div>
+
+            <div class="form-group">
+                <label for="dob">Date of Birth</label>
+                <input type="date" id="dob" th:field="*{dob}">
+            </div>
+
+            <div class="form-group">
+                <label for="guardianName">Guardian Name</label>
+                <input type="text" id="guardianName" th:field="*{guardianName}" placeholder="Guardian's full name">
+            </div>
+
+            <div class="form-group">
+                <label for="guardianCell">Guardian Cell</label>
+                <input type="tel" id="guardianCell" th:field="*{guardianCell}" placeholder="Guardian's phone number">
+            </div>
+
+            <div class="form-group">
+                <label for="year">Year</label>
+                <select id="year" th:field="*{year}">
+                    <option value="1">1st Year</option>
+                    <option value="2">2nd Year</option>
+                    <option value="3">3rd Year</option>
+                    <option value="4">4th Year</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="status">Status</label>
+                <select id="status" th:field="*{status}">
+                    <option value="Active">Active</option>
+                    <option value="Inactive">Inactive</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="submit-btn">Update Student</button>
+            <a th:href="@{/students}" class="cancel-btn">Cancel</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>
+
+</body>
+</html>
