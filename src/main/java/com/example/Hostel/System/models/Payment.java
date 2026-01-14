@@ -3,6 +3,7 @@ package com.example.Hostel.System.models;
 import jakarta.persistence.*;
 import lombok.Data;
 
+
 @Entity
 @Data
 public class Payment {
