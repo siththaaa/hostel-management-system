@@ -18,3 +18,4 @@ public interface RoomRepository extends JpaRepository<Room, Long> {
     long countByStatus(String status);
 
 }
+
