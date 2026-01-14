@@ -11,10 +11,11 @@ public class Room {
     private String roomNumber;
     private String type;
     private String status;
+    
 
 
     @OneToOne
-    @JoinColumn(name = "student_id") // This creates a foreign key in the database
+    @JoinColumn(name = "student_id") 
     private Student student;
 
 
