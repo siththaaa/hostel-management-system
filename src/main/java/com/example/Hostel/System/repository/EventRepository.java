@@ -8,3 +8,4 @@ import org.springframework.stereotype.Repository;
 public interface EventRepository extends JpaRepository<Event, Long> {
     long countByStatus(String status);
 }
+
